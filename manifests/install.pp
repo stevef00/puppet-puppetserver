@@ -1,8 +1,10 @@
 # docs
-class puppetserver::install {
+class puppetserver::install ($manage_puppet_agent=true) {
 
-  package { 'puppet-agent':
-    ensure => $puppetserver::agent_version,
+  if $manage_puppet_agent {
+    package { 'puppet-agent':
+      ensure => $puppetserver::agent_version,
+    }
   }
 
   package { 'puppetserver':
